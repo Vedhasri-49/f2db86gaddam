@@ -1,7 +1,8 @@
 extends layout
 block content
   h1= title
-  - let results=[{type:"gold", size:"small", set:2},{type:"sliver", size:"medium", set:1},{type:"platinum", size:"big", set:4}]
+  //- let results=[{type:"gold", size:"small", set:2},{type:"sliver", size:"medium", set:1},{type:"platinum", size:"big", set:4}]
+  let items = results 
   div(class="container-fluid")
   div(class="row")
   each value,index in results
