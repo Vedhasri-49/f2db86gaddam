@@ -5,9 +5,16 @@ exports.earring_list = function(req, res) {
     res.send('NOT IMPLEMENTED: Earring list'); 
 }; 
  
-// for a specific earring. 
-exports.earring_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Earring detail: ' + req.params.id); 
+// for a specific Costume. 
+exports.earring_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Earring.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
  
 // Handle earring create on POST. 
@@ -69,4 +76,25 @@ exports.earring_create_post = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+// Handle Costume update form on PUT. 
+exports.earring_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Earring.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.type)  
+               toUpdate.type = req.body.type; 
+        if(req.body.size) toUpdate.size = req.body.size; 
+        if(req.body.set) toUpdate.set = req.body.set; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 }; 
