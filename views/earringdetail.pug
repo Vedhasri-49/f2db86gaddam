@@ -1,20 +1,23 @@
 extends layout
 block content
- h1= title
- - let earringid = toShow._id
- - let type = toShow.type
- - let size = toShow.size
- - let set = toShow.set
- div
- div.row
- div(class='EarringAttr mr-3') Earring ID is:
- div #{earringid}
- div.row
- div(class='EarringAttr mr-3') Earring Type is:
- div #{type}
- div.row
- div(class='EarringAttr mr-3') Earring Size is:
- div #{size}
- div.row
- div(class='EarringAttr mr-3') Earring Set is:
- div #{set}
+    h1= title
+        if (toShow == null) 
+            h2 No instance to Show
+        else 
+            - let earringid = toShow._id
+            - let type = toShow.type
+            - let size = toShow.size
+            - let set = toShow.set
+            div
+                div.row
+                    div(class='EarringAttr mr-3') Earring ID is:
+                    div #{earringid}
+                div.row
+                    div(class='EarringAttr mr-3') Earring Type is:
+                    div #{type}
+                div.row
+                    div(class='EarringAttr mr-3') Earring Size is:
+                    div #{size}
+                div.row
+                    div(class='EarringAttr mr-3') Earring Set is:
+                    div #{set}

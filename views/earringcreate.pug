@@ -14,21 +14,21 @@ block content
 
         label.EarringAttr(for='type') Earring Type 
 
-        input#type(type='text', name='type')
+        input#type(type='text',class="form-control", name='type')
 
     div.form-group
 
         label.EarringAttr(for='size') Earring Size
 
-        input#size(type='text', name='size')
+        input#size(type='text',class="form-control", name='size')
 
     div.form-group
 
         label.EarringAttr(for='set') Earring Set
 
-        input#sett(type='number', name='set')
+        input#sett(type='number',class="form-control", name='set')
 
-    input(type="submit")
+    input(type="submit" class="btn btn-danger m-2")
   script.
 
     document.forms['EarringForm'].addEventListener('submit', (event) => {
