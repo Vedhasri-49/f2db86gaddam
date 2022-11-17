@@ -1,10 +1,6 @@
 var Earring = require('../models/earring'); 
  
-// List of all earrings 
-exports.earring_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Earring list'); 
-}; 
- 
+
 // for a specific Costume. 
 exports.earring_detail = async function(req, res) { 
     console.log("detail"  + req.params.id) 
@@ -17,20 +13,6 @@ exports.earring_detail = async function(req, res) {
     } 
 }; 
  
-// Handle earring create on POST. 
-exports.earring_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Earring create POST'); 
-}; 
- 
-// Handle earring delete form on DELETE. 
-exports.earring_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Earring delete DELETE ' + req.params.id); 
-}; 
- 
-// Handle Costume update form on PUT. 
-exports.earring_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Earring update PUT' + req.params.id); 
-}; 
 
 // List of all Costumes 
 exports.earring_list = async function(req, res) { 
@@ -96,5 +78,17 @@ ${JSON.stringify(req.body)}`)
         res.status(500) 
         res.send(`{"error": ${err}: Update for id ${req.params.id} 
 failed`); 
+    } 
+}; 
+// Handle earring delete on DELETE. 
+exports.earring_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Earring.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
     } 
 }; 
