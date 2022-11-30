@@ -1,15 +1,30 @@
-extends layout
+extends layout 
 block content
   h1= title
-  //- let results=[{type:"gold", size:"small", set:2},{type:"sliver", size:"medium", set:1},{type:"platinum", size:"big", set:4}]
-  let items = results 
+  - let createdestination = `dispatch(\"/Earring/create")`
+  button.btn( class="btn-success ml-1",style="float:right" onclick= createdestination ) Create
   div(class="container-fluid")
+   //- let results=[{type:"gold", size:"small", set:2},{type:"sliver", size:"medium", set:1},{type:"platinum", size:"big", set:4}]
+  - let items = results
+    div(class="container-fluid")
   div(class="row")
-  each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`) The Earring type is #{value.type}, and Size is #{value.size} in which each set contains #{value.set}
+    each item in items  
+      - let destination = `dispatch(\"/Earring/update?id=${item._id}\")`
+      - let detaildestination = `dispatch(\"/Earring/detail?id=${item._id}\")`
+      - let deletedestination = `dispatch(\"/Earring/delete?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.type}(#{item.size}) is #{item.set}
+         button.btn( class="btn-primary ml-1", onclick= destination ) Update
+         button.btn( class="btn-warning ml-1", onclick= detaildestination ) Detail
+         button.btn( class="btn-danger ml-1", onclick= deletedestination ) Delete
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
+  div(class="row")
+    each value,index in results
+        div(class="col-sm-2" onclick=`buy(${index})`)  Earring #{value.type} , Size #{value.size}, Set  #{value.set}
   script.
     function buy(index)
     {
       alert(`Your purchased Item ${index+1}`)
     }
-    

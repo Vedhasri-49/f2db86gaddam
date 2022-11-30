@@ -29,18 +29,4 @@ router.get('/earrings/:id', earring_controller.earring_detail);
 // GET request for list of all earring items. 
 router.get('/earrings', earring_controller.earring_list); 
 
-///* GET detail earring page */ 
-router.get('/detail', earring_controller_view.earring_view_one_Page); 
-
-/* GET create earring page */
-router.get('/create', earring_controller_view.earring_create_Page);
- 
-
-
-/* GET create update page */ 
-router.get('/update', earring_controller_view.earring_update_Page); 
-
-/* GET delete costume page */ 
-router.get('/delete', earring_controller_view.earring_delete_Page); 
-
 module.exports = router; 
